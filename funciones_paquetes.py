@@ -33,12 +33,15 @@ def listar_pedidos(clientes):
         print(f"Nombre {pedido['nombre']}, Apellido: {pedido['apellido']}, Direccion: {pedido['direccion']},Sector: {pedido['sector']}, Paq. pequeño: {pedido['Paq. pequeño']}, Paq. mediano: {pedido['Paq. mediano']}, Paq. grande: {pedido['Paq. grande']}")
 
 def imprimir_hoja_ruta(clientes):
+    if not clientes:
+        print("Error: no hay clientes registrados")
+        return
     ruta_por_sector = []
-
     for pedido in clientes:
-        sector = pedido['sector']
-        if pedido not in ruta_por_sector:
+        sector = pedido["sector"]
+        if sector not in ruta_por_sector:
             ruta_por_sector[sector]=[]
+        ruta_por_sector[sector].append(pedido)
     
     
     with open("hoja_de_ruta.txt", "w") as archivo:
