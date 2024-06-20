@@ -33,12 +33,14 @@ def listar_pedidos(clientes):
         print(f"Nombre {pedido['nombre']}, Apellido: {pedido['apellido']}, Direccion: {pedido['direccion']},Sector: {pedido['sector']}, Paq. pequeño: {pedido['Paq. pequeño']}, Paq. mediano: {pedido['Paq. mediano']}, Paq. grande: {pedido['Paq. grande']}")
 
 def imprimir_hoja_ruta(clientes):
+    ruta_por_sector = []
+
     for pedido in clientes:
         sector = pedido['sector']
         if pedido not in ruta_por_sector:
             ruta_por_sector[sector]=[]
     
-    ruta_por_sector = []
+    
     with open("hoja_de_ruta.txt", "w") as archivo:
         for sector, pedidos in ruta_por_sector.items():
             archivo.write(f"Sector: {sector}\n")
@@ -49,10 +51,11 @@ def main():
     clientes = []
 
     while True:
+        print("Menu")
         print("1. Registrar pedido")
         print("2. Listar pedidos")
         print("3. Imprimir Hoja de ruta")
-        print("4. Registrar pedido")
+        print("4. Salir")
         try:
             opcion = int(input("Ingrese la opcion que desea: "))
 
